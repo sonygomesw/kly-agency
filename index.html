@@ -860,7 +860,7 @@
                     </button>
                 </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="1" data-normal="$1,500" data-sprint="$2,500">$1,500</span>
+                    <span class="price-amount" data-price-card="1" data-normal="1 500€" data-sprint="2 500€">1 500€</span>
                     <span class="price-period" data-lang="pricing-period">/ project</span>
                 </div>
                 <div class="pricing-delivery-info">
@@ -896,7 +896,7 @@
                     </button>
                 </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="2" data-normal="$8,000" data-sprint="$11,000">$8,000</span>
+                    <span class="price-amount" data-price-card="2" data-normal="8 000€" data-sprint="11 000€">8 000€</span>
                     <span class="price-period" data-lang="pricing-period">/ project</span>
                 </div>
                 <div class="pricing-delivery-info">
@@ -932,7 +932,7 @@
                     </button>
                 </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="3" data-normal="$15,000" data-sprint="$21,000">$15,000</span>
+                    <span class="price-amount" data-price-card="3" data-normal="15 000€" data-sprint="21 000€">15 000€</span>
                     <span class="price-period" data-lang="pricing-period">/ project</span>
                 </div>
                 <div class="pricing-delivery-info">
@@ -1036,12 +1036,6 @@
     <footer>
         <div class="footer-content">
             <p class="copyright" data-lang="footer-copyright">© 2024 Kly Agency. All rights reserved.</p>
-            <ul class="footer-links">
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">LinkedIn</a></li>
-                <li><a href="#">Behance</a></li>
-            </ul>
         </div>
     </footer>
 
@@ -1219,19 +1213,12 @@
                 }
             });
 
-            // Update pricing amounts based on language
+            // Update pricing amounts
             document.querySelectorAll('[data-price-card]').forEach(priceElement => {
                 const cardId = priceElement.getAttribute('data-price-card');
                 const activeBtn = document.querySelector(`[data-card="${cardId}"].active`);
                 const mode = activeBtn ? activeBtn.getAttribute('data-mode') : 'normal';
-                const price = priceElement.getAttribute(`data-${mode}`);
-
-                if (lang === 'fr') {
-                    // Convert to euros for French
-                    priceElement.textContent = price.replace('$', '').replace(',', ' ') + '€';
-                } else {
-                    priceElement.textContent = price;
-                }
+                priceElement.textContent = priceElement.getAttribute(`data-${mode}`);
             });
 
             // Update support times based on language
@@ -1286,22 +1273,16 @@
                 const priceElement = document.querySelector(`[data-price-card="${cardId}"]`);
                 const newPrice = priceElement.getAttribute(`data-${mode}`);
 
-                // Get current language
-                const isEnglish = currentLang === 'en';
-                const displayPrice = isEnglish ? newPrice : newPrice.replace('$', '').replace(',', ' ') + '€';
-
-                priceElement.textContent = displayPrice;
+                priceElement.textContent = newPrice;
 
                 // Update support time
                 const supportElement = document.querySelector(`[data-support-card="${cardId}"]`);
                 const newSupport = supportElement.getAttribute(`data-${mode}`);
 
-                if (isEnglish) {
-                    supportElement.textContent = newSupport;
+                if (currentLang === 'fr') {
+                    supportElement.textContent = newSupport.replace('Months', 'Mois').replace('Month', 'Mois');
                 } else {
-                    // Translate to French
-                    const frenchSupport = newSupport.replace('Months', 'Mois').replace('Month', 'Mois');
-                    supportElement.textContent = frenchSupport;
+                    supportElement.textContent = newSupport;
                 }
             });
         });
