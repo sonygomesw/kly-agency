@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kly Agency — Creative Digital Agency</title>
+    <meta name="description" content="Kly Agency is a creative digital agency specializing in branding, web design, and digital experiences.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #ffffff;
+            --color-text: #000000;
+            --color-text-muted: #666666;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        ::selection {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-left: 2rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: color 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            font-family: var(--font-primary);
+            padding: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .lang-btn:hover {
+            color: var(--color-text);
+        }
+
+        .lang-btn.active {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .lang-separator {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 6rem;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 3rem 2.5rem;
+            transition: all 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            background: #ffffff;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.23, 0.98, 0.56, 1),
+                        transform 0.6s cubic-bezier(0.23, 0.98, 0.56, 1),
+                        border-color 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pricing-card:hover {
+            border-color: #000000;
+        }
+
+        .pricing-card-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .pricing-card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card-description {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .pricing-card-price {
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            margin-left: 0.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: opacity 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+        }
+
+        .pricing-cta:hover {
+            opacity: 0.8;
+        }
+
+        .pricing-toggle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            background: #f5f5f5;
+            border-radius: 6px;
+        }
+
+        .pricing-toggle-btn {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            color: var(--color-text-muted);
+        }
+
+        .pricing-toggle-btn.active {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .sprint-badge {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        .pricing-delivery-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+
+        .delivery-option {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .delivery-option-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .delivery-option-label.sprint {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .delivery-option-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        @media (max-width: 1200px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing {
+                padding: 6rem 2rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 6rem 4rem;
+            width: 100%;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(80px);
+            animation: fadeInUp 1.2s cubic-bezier(0.23, 0.98, 0.56, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-greeting {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid var(--color-text);
+            padding-bottom: 0.25rem;
+            transition: all 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .hero-cta:hover {
+            gap: 1rem;
+            opacity: 0.7;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 4rem 6rem 8rem;
+            width: 100%;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(80px);
+            animation: fadeInUp 1.2s cubic-bezier(0.23, 0.98, 0.56, 1) forwards;
+            animation-delay: 0.6s;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            opacity: 0;
+            transform: translateY(80px);
+            animation: fadeInUp 1.2s cubic-bezier(0.23, 0.98, 0.56, 1) forwards;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.8s; }
+        .project-card:nth-child(2) { animation-delay: 0.9s; }
+        .project-card:nth-child(3) { animation-delay: 1s; }
+        .project-card:nth-child(4) { animation-delay: 1.1s; }
+        .project-card:nth-child(5) { animation-delay: 1.2s; }
+        .project-card:nth-child(6) { animation-delay: 1.3s; }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(0.98);
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .project-category {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 6rem;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .services-list {
+            display: grid;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 4rem;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #e5e5e5;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.23, 0.98, 0.56, 1),
+                        transform 0.6s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 6rem;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .about-content {
+            max-width: 900px;
+        }
+
+        .about-content {
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.23, 0.98, 0.56, 1),
+                        transform 0.6s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .about-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+        }
+
+        .about-details {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 6rem 4rem;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .contact-content {
+            margin-top: 3rem;
+        }
+
+        .contact-email {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: var(--color-text);
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .contact-email:hover {
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 6rem 3rem;
+            width: 100%;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .copyright {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .projects,
+            .services,
+            .about,
+            .contact,
+            footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .service-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1400px) {
+            nav {
+                padding: 2rem 4rem;
+            }
+
+            .hero,
+            .projects,
+            .services,
+            .about,
+            .contact,
+            footer {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Kly Agency</a>
+        <div style="display: flex; align-items: center;">
+            <ul class="nav-links">
+                <li><a href="#projects" data-lang="nav-projects">Projects</a></li>
+                <li><a href="#pricing" data-lang="nav-pricing">Pricing</a></li>
+                <li><a href="#services" data-lang="nav-services">Services</a></li>
+                <li><a href="#about" data-lang="nav-about">About</a></li>
+                <li><a href="#contact" data-lang="nav-contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang-btn="en">EN</button>
+                <span class="lang-separator">/</span>
+                <button class="lang-btn" data-lang-btn="fr">FR</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-greeting" data-lang="hero-greeting">Creative Digital Agency</div>
+            <h1 class="hero-title" data-lang="hero-title">
+                Hello, we are Kly Agency. A creative studio specializing in branding,
+                design, and digital experiences.
+            </h1>
+            <p class="hero-description" data-lang="hero-description">
+                We work with ambitious brands and individuals to create meaningful
+                digital products and experiences that drive real results.
+            </p>
+            <a href="#contact" class="hero-cta">
+                <span data-lang="hero-cta">Start a project</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-header">
+            <div class="section-label" data-lang="projects-label">Recent Work</div>
+            <h2 class="section-title" data-lang="projects-title">Selected Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <a href="https://klipz.io" target="_blank" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/klipz.site.png" alt="Klipz.io">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project1-title">Klipz.io</h3>
+                    <span class="project-category" data-lang="project1-category">WEB APP</span>
+                </div>
+            </a>
+            <a href="https://cliptokk.com" target="_blank" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/cliptokk.site.png" alt="Cliptokk">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project2-title">Cliptokk.com</h3>
+                    <span class="project-category" data-lang="project2-category">WEB DESIGN</span>
+                </div>
+            </a>
+            <a href="https://www.milainteriordesign.com/" target="_blank" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/mila-design.site.png" alt="Mila Design">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project3-title">Mila Design</h3>
+                    <span class="project-category" data-lang="project3-category">UI/UX</span>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/branding.jpg" alt="Branding">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project4-title">Branding</h3>
+                    <span class="project-category" data-lang="project4-category">BRANDING</span>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/app-mobiles.jpg" alt="Mobile Apps">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project5-title">Mobile Apps</h3>
+                    <span class="project-category" data-lang="project5-category">MOBILE APP</span>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image">
+                    <img src="exemples/Saas.jpg" alt="Saas">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title" data-lang="project6-title">Saas</h3>
+                    <span class="project-category" data-lang="project6-category">SAAS</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <div class="section-label" data-lang="pricing-label">Pricing</div>
+            <h2 class="section-title" data-lang="pricing-title">Our Packages</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3 class="pricing-card-title" data-lang="pricing1-title">Website</h3>
+                    <p class="pricing-card-description" data-lang="pricing1-description">Professional website tailored to your needs</p>
+                </div>
+                <div class="pricing-toggle">
+                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="1" data-lang="pricing-normal">Normal</button>
+                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="1">
+                        <span data-lang="pricing-sprint">Sprint</span>
+                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
+                    </button>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="price-amount" data-price-card="1" data-normal="$1,500" data-sprint="$2,500">$1,500</span>
+                    <span class="price-period" data-lang="pricing-period">/ project</span>
+                </div>
+                <div class="pricing-delivery-info">
+                    <div class="delivery-option">
+                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
+                        <span class="delivery-option-value" data-lang="delivery1-normal">4-6 weeks</span>
+                    </div>
+                    <div class="delivery-option">
+                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
+                        <span class="delivery-option-value" data-lang="delivery1-sprint">2-3 weeks</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li data-lang="pricing1-feature1">Responsive Design</li>
+                    <li data-lang="pricing1-feature2">SEO Optimization</li>
+                    <li data-lang="pricing1-feature3">Content Management System</li>
+                    <li><span data-support-card="1" data-normal="3 Months" data-sprint="1.5 Months">3 Months</span> <span data-lang="pricing-support">Support</span></li>
+                    <li data-lang="pricing1-feature5">Custom Domain Setup</li>
+                </ul>
+                <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3 class="pricing-card-title" data-lang="pricing2-title">iOS Mobile App</h3>
+                    <p class="pricing-card-description" data-lang="pricing2-description">Native iOS application for your business</p>
+                </div>
+                <div class="pricing-toggle">
+                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="2" data-lang="pricing-normal">Normal</button>
+                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="2">
+                        <span data-lang="pricing-sprint">Sprint</span>
+                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
+                    </button>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="price-amount" data-price-card="2" data-normal="$8,000" data-sprint="$11,000">$8,000</span>
+                    <span class="price-period" data-lang="pricing-period">/ project</span>
+                </div>
+                <div class="pricing-delivery-info">
+                    <div class="delivery-option">
+                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
+                        <span class="delivery-option-value" data-lang="delivery2-normal">3-4 months</span>
+                    </div>
+                    <div class="delivery-option">
+                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
+                        <span class="delivery-option-value" data-lang="delivery2-sprint">1.5-2 months</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li data-lang="pricing2-feature1">Native iOS Development</li>
+                    <li data-lang="pricing2-feature2">App Store Submission</li>
+                    <li data-lang="pricing2-feature3">Push Notifications</li>
+                    <li data-lang="pricing2-feature4">Backend Integration</li>
+                    <li><span data-support-card="2" data-normal="6 Months" data-sprint="3 Months">6 Months</span> <span data-lang="pricing-support">Support</span></li>
+                </ul>
+                <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-card-header">
+                    <h3 class="pricing-card-title" data-lang="pricing3-title">SaaS Platform</h3>
+                    <p class="pricing-card-description" data-lang="pricing3-description">Complete SaaS solution from concept to launch</p>
+                </div>
+                <div class="pricing-toggle">
+                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="3" data-lang="pricing-normal">Normal</button>
+                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="3">
+                        <span data-lang="pricing-sprint">Sprint</span>
+                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
+                    </button>
+                </div>
+                <div class="pricing-card-price">
+                    <span class="price-amount" data-price-card="3" data-normal="$15,000" data-sprint="$21,000">$15,000</span>
+                    <span class="price-period" data-lang="pricing-period">/ project</span>
+                </div>
+                <div class="pricing-delivery-info">
+                    <div class="delivery-option">
+                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
+                        <span class="delivery-option-value" data-lang="delivery3-normal">5-6 months</span>
+                    </div>
+                    <div class="delivery-option">
+                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
+                        <span class="delivery-option-value" data-lang="delivery3-sprint">2.5-3 months</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li data-lang="pricing3-feature1">Full-Stack Development</li>
+                    <li data-lang="pricing3-feature2">User Authentication</li>
+                    <li data-lang="pricing3-feature3">Payment Integration</li>
+                    <li data-lang="pricing3-feature4">Admin Dashboard</li>
+                    <li><span data-support-card="3" data-normal="12 Months" data-sprint="6 Months">12 Months</span> <span data-lang="pricing-support">Support</span></li>
+                </ul>
+                <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
+            </div>
+        </div>
+        <p class="pricing-note" data-lang="pricing-note">* Sprint option delivers your project 2x faster with dedicated priority development</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-label" data-lang="services-label">What We Do</div>
+            <h2 class="section-title" data-lang="services-title">Services</h2>
+        </div>
+        <div class="services-list">
+            <div class="service-item">
+                <div class="service-number">01</div>
+                <div class="service-content">
+                    <h3 data-lang="service1-title">Brand Strategy & Identity</h3>
+                    <p data-lang="service1-description">We create distinctive brand identities that resonate with your audience and stand the test of time. From strategy to execution, we craft comprehensive brand systems.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">02</div>
+                <div class="service-content">
+                    <h3 data-lang="service2-title">Digital Product Design</h3>
+                    <p data-lang="service2-description">User-centered design for web and mobile applications. We transform complex problems into elegant, intuitive digital experiences that users love.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">03</div>
+                <div class="service-content">
+                    <h3 data-lang="service3-title">Web Development</h3>
+                    <p data-lang="service3-description">High-performance websites and web applications built with modern technologies. Clean code, seamless interactions, and optimized for all devices.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">04</div>
+                <div class="service-content">
+                    <h3 data-lang="service4-title">Digital Marketing</h3>
+                    <p data-lang="service4-description">Strategic campaigns that drive engagement and conversions. From content strategy to performance marketing, we help you reach your goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <div class="section-label" data-lang="about-label">Who We Are</div>
+            <h2 class="section-title" data-lang="about-title">About</h2>
+        </div>
+        <div class="about-content">
+            <p class="about-text" data-lang="about-text">
+                Kly Agency is a creative studio working at the intersection of design,
+                technology, and strategy.
+            </p>
+            <div class="about-details">
+                <p data-lang="about-p1">We partner with forward-thinking brands and startups to create exceptional
+                digital experiences. Our multidisciplinary team brings together expertise in
+                branding, design, development, and digital strategy to deliver work that not
+                only looks beautiful but drives real business results.</p>
+                <br>
+                <p data-lang="about-p2">With over 150 projects completed for clients around the world, we've built
+                a reputation for thoughtful design, technical excellence, and strategic thinking.
+                We believe in long-term partnerships and are committed to helping our clients
+                succeed in an ever-evolving digital landscape.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-label" data-lang="contact-label">Get in Touch</div>
+            <h2 class="section-title" data-lang="contact-title">Let's work together</h2>
+        </div>
+        <div class="contact-content">
+            <a href="mailto:hello@klyagency.com" class="contact-email">hello@klyagency.com</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="copyright" data-lang="footer-copyright">© 2024 Kly Agency. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Behance</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                'nav-projects': 'Projects',
+                'nav-pricing': 'Pricing',
+                'nav-services': 'Services',
+                'nav-about': 'About',
+                'nav-contact': 'Contact',
+                'hero-greeting': 'Creative Digital Agency',
+                'hero-title': 'Hello, we are Kly Agency. A creative studio specializing in branding, design, and digital experiences.',
+                'hero-description': 'We work with ambitious brands and individuals to create meaningful digital products and experiences that drive real results.',
+                'hero-cta': 'Start a project',
+                'projects-label': 'Recent Work',
+                'projects-title': 'Selected Projects',
+                'project1-title': 'Klipz.io',
+                'project1-category': 'WEB APP',
+                'project2-title': 'Cliptokk.com',
+                'project2-category': 'WEB DESIGN',
+                'project3-title': 'Mila Design',
+                'project3-category': 'UI/UX',
+                'project4-title': 'Branding',
+                'project4-category': 'BRANDING',
+                'project5-title': 'Mobile Apps',
+                'project5-category': 'MOBILE APP',
+                'project6-title': 'Saas',
+                'project6-category': 'SAAS',
+                'services-label': 'What We Do',
+                'services-title': 'Services',
+                'service1-title': 'Brand Strategy & Identity',
+                'service1-description': 'We create distinctive brand identities that resonate with your audience and stand the test of time. From strategy to execution, we craft comprehensive brand systems.',
+                'service2-title': 'Digital Product Design',
+                'service2-description': 'User-centered design for web and mobile applications. We transform complex problems into elegant, intuitive digital experiences that users love.',
+                'service3-title': 'Web Development',
+                'service3-description': 'High-performance websites and web applications built with modern technologies. Clean code, seamless interactions, and optimized for all devices.',
+                'service4-title': 'Digital Marketing',
+                'service4-description': 'Strategic campaigns that drive engagement and conversions. From content strategy to performance marketing, we help you reach your goals.',
+                'about-label': 'Who We Are',
+                'about-title': 'About',
+                'about-text': 'Kly Agency is a creative studio working at the intersection of design, technology, and strategy.',
+                'about-p1': 'We partner with forward-thinking brands and startups to create exceptional digital experiences. Our multidisciplinary team brings together expertise in branding, design, development, and digital strategy to deliver work that not only looks beautiful but drives real business results.',
+                'about-p2': 'With over 150 projects completed for clients around the world, we\'ve built a reputation for thoughtful design, technical excellence, and strategic thinking. We believe in long-term partnerships and are committed to helping our clients succeed in an ever-evolving digital landscape.',
+                'contact-label': 'Get in Touch',
+                'contact-title': 'Let\'s work together',
+                'footer-copyright': '© 2024 Kly Agency. All rights reserved.',
+                'pricing-label': 'Pricing',
+                'pricing-title': 'Our Packages',
+                'pricing1-title': 'Website',
+                'pricing1-description': 'Professional website tailored to your needs',
+                'pricing-period': '/ project',
+                'pricing1-feature1': 'Responsive Design',
+                'pricing1-feature2': 'SEO Optimization',
+                'pricing1-feature3': 'Content Management System',
+                'pricing1-feature5': 'Custom Domain Setup',
+                'pricing2-title': 'iOS Mobile App',
+                'pricing2-description': 'Native iOS application for your business',
+                'pricing2-feature1': 'Native iOS Development',
+                'pricing2-feature2': 'App Store Submission',
+                'pricing2-feature3': 'Push Notifications',
+                'pricing2-feature4': 'Backend Integration',
+                'pricing3-title': 'SaaS Platform',
+                'pricing3-description': 'Complete SaaS solution from concept to launch',
+                'pricing3-feature1': 'Full-Stack Development',
+                'pricing3-feature2': 'User Authentication',
+                'pricing3-feature3': 'Payment Integration',
+                'pricing3-feature4': 'Admin Dashboard',
+                'pricing-cta': 'Get Started',
+                'pricing-normal': 'Normal',
+                'pricing-sprint': 'Sprint',
+                'pricing-fast': '2x FAST',
+                'pricing-delivery': 'Delivery:',
+                'pricing-support': 'Support',
+                'pricing-note': '* Sprint option delivers your project 2x faster with dedicated priority development',
+                'delivery1-normal': '4-6 weeks',
+                'delivery1-sprint': '2-3 weeks',
+                'delivery2-normal': '3-4 months',
+                'delivery2-sprint': '1.5-2 months',
+                'delivery3-normal': '5-6 months',
+                'delivery3-sprint': '2.5-3 months'
+            },
+            fr: {
+                'nav-projects': 'Projets',
+                'nav-pricing': 'Tarifs',
+                'nav-services': 'Services',
+                'nav-about': 'À propos',
+                'nav-contact': 'Contact',
+                'hero-greeting': 'Agence Digitale Créative',
+                'hero-title': 'Bonjour, nous sommes Kly Agency. Un studio créatif spécialisé dans le branding, le design et les expériences digitales.',
+                'hero-description': 'Nous travaillons avec des marques et des individus ambitieux pour créer des produits et expériences digitales significatifs qui génèrent de vrais résultats.',
+                'hero-cta': 'Démarrer un projet',
+                'projects-label': 'Travaux Récents',
+                'projects-title': 'Projets Sélectionnés',
+                'project1-title': 'Klipz.io',
+                'project1-category': 'APPLICATION WEB',
+                'project2-title': 'Cliptokk.com',
+                'project2-category': 'WEB DESIGN',
+                'project3-title': 'Mila Design',
+                'project3-category': 'UI/UX',
+                'project4-title': 'Branding',
+                'project4-category': 'BRANDING',
+                'project5-title': 'App mobiles',
+                'project5-category': 'APP MOBILE',
+                'project6-title': 'Saas',
+                'project6-category': 'SAAS',
+                'services-label': 'Ce Que Nous Faisons',
+                'services-title': 'Services',
+                'service1-title': 'Stratégie & Identité de Marque',
+                'service1-description': 'Nous créons des identités de marque distinctives qui résonnent avec votre audience et résistent à l\'épreuve du temps. De la stratégie à l\'exécution, nous élaborons des systèmes de marque complets.',
+                'service2-title': 'Design de Produits Digitaux',
+                'service2-description': 'Design centré sur l\'utilisateur pour applications web et mobiles. Nous transformons des problèmes complexes en expériences digitales élégantes et intuitives que les utilisateurs adorent.',
+                'service3-title': 'Développement Web',
+                'service3-description': 'Sites web et applications web haute performance construits avec des technologies modernes. Code propre, interactions fluides et optimisés pour tous les appareils.',
+                'service4-title': 'Marketing Digital',
+                'service4-description': 'Campagnes stratégiques qui génèrent engagement et conversions. De la stratégie de contenu au marketing de performance, nous vous aidons à atteindre vos objectifs.',
+                'about-label': 'Qui Nous Sommes',
+                'about-title': 'À propos',
+                'about-text': 'Kly Agency est un studio créatif travaillant à l\'intersection du design, de la technologie et de la stratégie.',
+                'about-p1': 'Nous nous associons avec des marques et startups avant-gardistes pour créer des expériences digitales exceptionnelles. Notre équipe multidisciplinaire rassemble une expertise en branding, design, développement et stratégie digitale pour livrer un travail qui non seulement est magnifique mais génère de vrais résultats commerciaux.',
+                'about-p2': 'Avec plus de 150 projets réalisés pour des clients à travers le monde, nous avons construit une réputation pour un design réfléchi, une excellence technique et une pensée stratégique. Nous croyons aux partenariats à long terme et sommes engagés à aider nos clients à réussir dans un paysage digital en constante évolution.',
+                'contact-label': 'Prenons Contact',
+                'contact-title': 'Travaillons ensemble',
+                'footer-copyright': '© 2024 Kly Agency. Tous droits réservés.',
+                'pricing-label': 'Tarifs',
+                'pricing-title': 'Nos Forfaits',
+                'pricing1-title': 'Site Web',
+                'pricing1-description': 'Site web professionnel adapté à vos besoins',
+                'pricing-period': '/ projet',
+                'pricing1-feature1': 'Design Responsive',
+                'pricing1-feature2': 'Optimisation SEO',
+                'pricing1-feature3': 'Système de Gestion de Contenu',
+                'pricing1-feature5': 'Configuration Domaine Personnalisé',
+                'pricing2-title': 'Application iOS',
+                'pricing2-description': 'Application iOS native pour votre entreprise',
+                'pricing2-feature1': 'Développement iOS Natif',
+                'pricing2-feature2': 'Soumission App Store',
+                'pricing2-feature3': 'Notifications Push',
+                'pricing2-feature4': 'Intégration Backend',
+                'pricing3-title': 'Plateforme SaaS',
+                'pricing3-description': 'Solution SaaS complète du concept au lancement',
+                'pricing3-feature1': 'Développement Full-Stack',
+                'pricing3-feature2': 'Authentification Utilisateur',
+                'pricing3-feature3': 'Intégration Paiement',
+                'pricing3-feature4': 'Tableau de Bord Admin',
+                'pricing-cta': 'Commencer',
+                'pricing-normal': 'Normal',
+                'pricing-sprint': 'Sprint',
+                'pricing-fast': '2x RAPIDE',
+                'pricing-delivery': 'Livraison :',
+                'pricing-support': 'de Support',
+                'pricing-note': '* L\'option Sprint livre votre projet 2x plus rapidement avec un développement prioritaire dédié',
+                'delivery1-normal': '4-6 semaines',
+                'delivery1-sprint': '2-3 semaines',
+                'delivery2-normal': '3-4 mois',
+                'delivery2-sprint': '1.5-2 mois',
+                'delivery3-normal': '5-6 mois',
+                'delivery3-sprint': '2.5-3 mois'
+            }
+        };
+
+        // Language management
+        let currentLang = localStorage.getItem('preferred-language') || 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferred-language', lang);
+
+            // Update all elements with data-lang attribute
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update pricing amounts based on language
+            document.querySelectorAll('[data-price-card]').forEach(priceElement => {
+                const cardId = priceElement.getAttribute('data-price-card');
+                const activeBtn = document.querySelector(`[data-card="${cardId}"].active`);
+                const mode = activeBtn ? activeBtn.getAttribute('data-mode') : 'normal';
+                const price = priceElement.getAttribute(`data-${mode}`);
+
+                if (lang === 'fr') {
+                    // Convert to euros for French
+                    priceElement.textContent = price.replace('$', '').replace(',', ' ') + '€';
+                } else {
+                    priceElement.textContent = price;
+                }
+            });
+
+            // Update support times based on language
+            document.querySelectorAll('[data-support-card]').forEach(supportElement => {
+                const cardId = supportElement.getAttribute('data-support-card');
+                const activeBtn = document.querySelector(`[data-card="${cardId}"].active`);
+                const mode = activeBtn ? activeBtn.getAttribute('data-mode') : 'normal';
+                const support = supportElement.getAttribute(`data-${mode}`);
+
+                if (lang === 'fr') {
+                    supportElement.textContent = support.replace('Months', 'Mois').replace('Month', 'Mois');
+                } else {
+                    supportElement.textContent = support;
+                }
+            });
+
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang-btn') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Language switcher event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang-btn');
+                setLanguage(lang);
+            });
+        });
+
+        // Set initial language
+        setLanguage(currentLang);
+
+        // Pricing toggle functionality
+        document.querySelectorAll('.pricing-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cardId = this.getAttribute('data-card');
+                const mode = this.getAttribute('data-mode');
+
+                // Update toggle buttons for this card
+                const cardButtons = document.querySelectorAll(`[data-card="${cardId}"]`);
+                cardButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update price
+                const priceElement = document.querySelector(`[data-price-card="${cardId}"]`);
+                const newPrice = priceElement.getAttribute(`data-${mode}`);
+
+                // Get current language
+                const isEnglish = currentLang === 'en';
+                const displayPrice = isEnglish ? newPrice : newPrice.replace('$', '').replace(',', ' ') + '€';
+
+                priceElement.textContent = displayPrice;
+
+                // Update support time
+                const supportElement = document.querySelector(`[data-support-card="${cardId}"]`);
+                const newSupport = supportElement.getAttribute(`data-${mode}`);
+
+                if (isEnglish) {
+                    supportElement.textContent = newSupport;
+                } else {
+                    // Translate to French
+                    const frenchSupport = newSupport.replace('Months', 'Mois').replace('Month', 'Mois');
+                    supportElement.textContent = frenchSupport;
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service items, about content, and pricing cards
+        document.querySelectorAll('.service-item, .about-content, .pricing-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
