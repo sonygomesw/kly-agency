@@ -240,90 +240,6 @@
             opacity: 0.8;
         }
 
-        .pricing-toggle {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            padding: 0.5rem;
-            background: #f5f5f5;
-            border-radius: 6px;
-        }
-
-        .pricing-toggle-btn {
-            flex: 1;
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: none;
-            border-radius: 4px;
-            font-family: var(--font-primary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
-            color: var(--color-text-muted);
-        }
-
-        .pricing-toggle-btn.active {
-            background: #000000;
-            color: #ffffff;
-        }
-
-        .sprint-badge {
-            display: inline-block;
-            background: #000000;
-            color: #ffffff;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            margin-left: 0.5rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-note {
-            text-align: center;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-            font-style: italic;
-        }
-
-        .pricing-delivery-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f9f9f9;
-            border-radius: 6px;
-        }
-
-        .delivery-option {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        .delivery-option-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-text-muted);
-            font-family: var(--font-mono);
-        }
-
-        .delivery-option-label.sprint {
-            color: #000000;
-            font-weight: 700;
-        }
-
-        .delivery-option-value {
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-        }
 
         @media (max-width: 1200px) {
             .pricing-grid {
@@ -725,6 +641,166 @@
             }
         }
 
+        /* Project Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s cubic-bezier(0.23, 0.98, 0.56, 1),
+                        visibility 0.4s cubic-bezier(0.23, 0.98, 0.56, 1);
+            overflow-y: auto;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 820px;
+            border-radius: 8px;
+            overflow: hidden;
+            transform: translateY(40px);
+            transition: transform 0.4s cubic-bezier(0.23, 0.98, 0.56, 1);
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .modal-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+        }
+
+        .modal-list {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .modal-list li {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+            padding-left: 1.25rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #000000;
+        }
+
+        .modal-list li strong {
+            color: var(--color-text);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.23, 0.98, 0.56, 1);
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            background: #000000;
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 3rem 3rem;
+            border-top: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-client {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--color-text);
+            padding-bottom: 0.15rem;
+            transition: opacity 0.3s;
+        }
+
+        .modal-link:hover {
+            opacity: 0.6;
+        }
+
         /* Reduce motion */
         @media (prefers-reduced-motion: reduce) {
             *,
@@ -852,33 +928,13 @@
                     <h3 class="pricing-card-title" data-lang="pricing1-title">Website</h3>
                     <p class="pricing-card-description" data-lang="pricing1-description">Professional website tailored to your needs</p>
                 </div>
-                <div class="pricing-toggle">
-                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="1" data-lang="pricing-normal">Normal</button>
-                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="1">
-                        <span data-lang="pricing-sprint">Sprint</span>
-                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
-                    </button>
-                </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="1" data-normal="1 500€" data-sprint="2 500€">1 500€</span>
-                    <span class="price-period" data-lang="pricing-period">/ project</span>
-                </div>
-                <div class="pricing-delivery-info">
-                    <div class="delivery-option">
-                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
-                        <span class="delivery-option-value" data-lang="delivery1-normal">4-6 weeks</span>
-                    </div>
-                    <div class="delivery-option">
-                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
-                        <span class="delivery-option-value" data-lang="delivery1-sprint">2-3 weeks</span>
-                    </div>
+                    <span class="price-amount">1 500€</span>
                 </div>
                 <ul class="pricing-features">
                     <li data-lang="pricing1-feature1">Responsive Design</li>
                     <li data-lang="pricing1-feature2">SEO Optimization</li>
                     <li data-lang="pricing1-feature3">Content Management System</li>
-                    <li><span data-support-card="1" data-normal="3 Months" data-sprint="1.5 Months">3 Months</span> <span data-lang="pricing-support">Support</span></li>
-                    <li data-lang="pricing1-feature5">Custom Domain Setup</li>
                 </ul>
                 <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
             </div>
@@ -888,33 +944,13 @@
                     <h3 class="pricing-card-title" data-lang="pricing2-title">iOS Mobile App</h3>
                     <p class="pricing-card-description" data-lang="pricing2-description">Native iOS application for your business</p>
                 </div>
-                <div class="pricing-toggle">
-                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="2" data-lang="pricing-normal">Normal</button>
-                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="2">
-                        <span data-lang="pricing-sprint">Sprint</span>
-                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
-                    </button>
-                </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="2" data-normal="8 000€" data-sprint="11 000€">8 000€</span>
-                    <span class="price-period" data-lang="pricing-period">/ project</span>
-                </div>
-                <div class="pricing-delivery-info">
-                    <div class="delivery-option">
-                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
-                        <span class="delivery-option-value" data-lang="delivery2-normal">3-4 months</span>
-                    </div>
-                    <div class="delivery-option">
-                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
-                        <span class="delivery-option-value" data-lang="delivery2-sprint">1.5-2 months</span>
-                    </div>
+                    <span class="price-amount">8 000€</span>
                 </div>
                 <ul class="pricing-features">
                     <li data-lang="pricing2-feature1">Native iOS Development</li>
                     <li data-lang="pricing2-feature2">App Store Submission</li>
-                    <li data-lang="pricing2-feature3">Push Notifications</li>
                     <li data-lang="pricing2-feature4">Backend Integration</li>
-                    <li><span data-support-card="2" data-normal="6 Months" data-sprint="3 Months">6 Months</span> <span data-lang="pricing-support">Support</span></li>
                 </ul>
                 <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
             </div>
@@ -924,38 +960,17 @@
                     <h3 class="pricing-card-title" data-lang="pricing3-title">SaaS Platform</h3>
                     <p class="pricing-card-description" data-lang="pricing3-description">Complete SaaS solution from concept to launch</p>
                 </div>
-                <div class="pricing-toggle">
-                    <button class="pricing-toggle-btn active" data-mode="normal" data-card="3" data-lang="pricing-normal">Normal</button>
-                    <button class="pricing-toggle-btn" data-mode="sprint" data-card="3">
-                        <span data-lang="pricing-sprint">Sprint</span>
-                        <span class="sprint-badge" data-lang="pricing-fast">2x FAST</span>
-                    </button>
-                </div>
                 <div class="pricing-card-price">
-                    <span class="price-amount" data-price-card="3" data-normal="15 000€" data-sprint="21 000€">15 000€</span>
-                    <span class="price-period" data-lang="pricing-period">/ project</span>
-                </div>
-                <div class="pricing-delivery-info">
-                    <div class="delivery-option">
-                        <span class="delivery-option-label" data-lang="pricing-normal">Normal</span>
-                        <span class="delivery-option-value" data-lang="delivery3-normal">5-6 months</span>
-                    </div>
-                    <div class="delivery-option">
-                        <span class="delivery-option-label sprint" data-lang="pricing-sprint">Sprint</span>
-                        <span class="delivery-option-value" data-lang="delivery3-sprint">2.5-3 months</span>
-                    </div>
+                    <span class="price-amount">15 000€</span>
                 </div>
                 <ul class="pricing-features">
                     <li data-lang="pricing3-feature1">Full-Stack Development</li>
-                    <li data-lang="pricing3-feature2">User Authentication</li>
                     <li data-lang="pricing3-feature3">Payment Integration</li>
                     <li data-lang="pricing3-feature4">Admin Dashboard</li>
-                    <li><span data-support-card="3" data-normal="12 Months" data-sprint="6 Months">12 Months</span> <span data-lang="pricing-support">Support</span></li>
                 </ul>
                 <a href="#contact" class="pricing-cta" data-lang="pricing-cta">Get Started</a>
             </div>
         </div>
-        <p class="pricing-note" data-lang="pricing-note">* Sprint option delivers your project 2x faster with dedicated priority development</p>
     </section>
 
     <!-- Services Section -->
@@ -1105,19 +1120,7 @@
                 'pricing3-feature2': 'User Authentication',
                 'pricing3-feature3': 'Payment Integration',
                 'pricing3-feature4': 'Admin Dashboard',
-                'pricing-cta': 'Get Started',
-                'pricing-normal': 'Normal',
-                'pricing-sprint': 'Sprint',
-                'pricing-fast': '2x FAST',
-                'pricing-delivery': 'Delivery:',
-                'pricing-support': 'Support',
-                'pricing-note': '* Sprint option delivers your project 2x faster with dedicated priority development',
-                'delivery1-normal': '4-6 weeks',
-                'delivery1-sprint': '2-3 weeks',
-                'delivery2-normal': '3-4 months',
-                'delivery2-sprint': '1.5-2 months',
-                'delivery3-normal': '5-6 months',
-                'delivery3-sprint': '2.5-3 months'
+                'pricing-cta': 'Get Started'
             },
             fr: {
                 'nav-projects': 'Projets',
@@ -1182,19 +1185,7 @@
                 'pricing3-feature2': 'Authentification Utilisateur',
                 'pricing3-feature3': 'Intégration Paiement',
                 'pricing3-feature4': 'Tableau de Bord Admin',
-                'pricing-cta': 'Commencer',
-                'pricing-normal': 'Normal',
-                'pricing-sprint': 'Sprint',
-                'pricing-fast': '2x RAPIDE',
-                'pricing-delivery': 'Livraison :',
-                'pricing-support': 'de Support',
-                'pricing-note': '* L\'option Sprint livre votre projet 2x plus rapidement avec un développement prioritaire dédié',
-                'delivery1-normal': '4-6 semaines',
-                'delivery1-sprint': '2-3 semaines',
-                'delivery2-normal': '3-4 mois',
-                'delivery2-sprint': '1.5-2 mois',
-                'delivery3-normal': '5-6 mois',
-                'delivery3-sprint': '2.5-3 mois'
+                'pricing-cta': 'Commencer'
             }
         };
 
@@ -1257,35 +1248,6 @@
 
         // Set initial language
         setLanguage(currentLang);
-
-        // Pricing toggle functionality
-        document.querySelectorAll('.pricing-toggle-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const cardId = this.getAttribute('data-card');
-                const mode = this.getAttribute('data-mode');
-
-                // Update toggle buttons for this card
-                const cardButtons = document.querySelectorAll(`[data-card="${cardId}"]`);
-                cardButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                // Update price
-                const priceElement = document.querySelector(`[data-price-card="${cardId}"]`);
-                const newPrice = priceElement.getAttribute(`data-${mode}`);
-
-                priceElement.textContent = newPrice;
-
-                // Update support time
-                const supportElement = document.querySelector(`[data-support-card="${cardId}"]`);
-                const newSupport = supportElement.getAttribute(`data-${mode}`);
-
-                if (currentLang === 'fr') {
-                    supportElement.textContent = newSupport.replace('Months', 'Mois').replace('Month', 'Mois');
-                } else {
-                    supportElement.textContent = newSupport;
-                }
-            });
-        });
 
         // Intersection Observer for scroll animations
         const observerOptions = {
